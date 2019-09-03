@@ -17,6 +17,7 @@
     ],
     "rules": {
         "no-console":"off",
-        "react/jsx-one-expression-per-line":"off"
+        "react/jsx-one-expression-per-line":"off",
+        "no-undef":"warn"
     }
 }
