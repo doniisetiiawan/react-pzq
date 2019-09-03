@@ -4,9 +4,17 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <p>
-    Hello, <strong>JSX</strong>
-  </p>,
+  <div>
+    <button />
+    <code />
+    <input />
+    <label />
+    <p />
+    <pre />
+    <select />
+    <table />
+    <ul />
+  </div>,
   document.getElementById('root'),
 );
 
