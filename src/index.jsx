@@ -1,19 +1,14 @@
 import React from 'react';
 import { render as renderJSX } from 'react-dom';
 
-import MyFeature from './MyFeature';
-
-let disabled = true;
+import MyList from './MyList';
 
 function render() {
-  disabled = !disabled;
+  const myList = renderJSX(<MyList />, document.getElementById('root'));
 
-  renderJSX(
-    <MyFeature {...{ disabled }} />,
-    document.getElementById('root'),
-  );
+  myList.data = myList.data.setIn(['items', 0], 0);
 }
 
-setInterval(render, 3000);
-
-render();
+for (let i = 0; i < 100; i += 1) {
+  render();
+}
