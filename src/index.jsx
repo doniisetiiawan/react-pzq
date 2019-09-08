@@ -3,4 +3,10 @@ import { render } from 'react-dom';
 
 import MyList from './MyList';
 
-render(<MyList />, document.getElementById('root'));
+const items = [
+  { id: 0, name: 'First' },
+  { id: 1, name: 'Second' },
+  { id: 2, name: 'Third' },
+];
+
+render(<MyList items={items} />, document.getElementById('root'));

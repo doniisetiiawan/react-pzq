@@ -1,31 +1,22 @@
 import React, { Component } from 'react';
 
-import reverse from './reverse';
-
 export default class MyList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { items: ['Angular', 'Ember', 'React'] };
-  }
-
-  onReverseClick = reverse.bind(this);
+  onClick = (id) => {
+    const { items } = this.props;
+    const { name } = items.find((i) => i.id === id);
+    console.log('clicked', `"${name}"`);
+  };
 
   render() {
-    const {
-      state: { items },
-      onReverseClick,
-    } = this;
-
+    const { items } = this.props;
     return (
-      <section>
-        <button onClick={onReverseClick}>Reverse</button>
-        <ul>
-          {items.map((v) => (
-            <li key={v}>{v}</li>
-          ))}
-        </ul>
-      </section>
+      <ul>
+        {items.map(({ id, name }) => (
+          <li key={id} onClick={() => this.onClick(id)}>
+            {name}
+          </li>
+        ))}
+      </ul>
     );
   }
 }
