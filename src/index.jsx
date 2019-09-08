@@ -1,14 +1,17 @@
 import React from 'react';
-import { render as renderJSX } from 'react-dom';
+import { render } from 'react-dom';
 
-import MyList from './MyList';
+import MyUser from './MyUser';
 
-function render() {
-  const myList = renderJSX(<MyList />, document.getElementById('root'));
+const myUser = render(<MyUser />, document.getElementById('root'));
 
-  myList.data = myList.data.setIn(['items', 0], 0);
-}
+myUser.setState({
+  modified: new Date(),
+  first: 'First1',
+  last: 'Last1',
+});
 
-for (let i = 0; i < 100; i += 1) {
-  render();
-}
+myUser.setState({
+  first: 'First2',
+  last: 'Last2',
+});
