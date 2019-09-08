@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function MyButton(props) {
-  const { disabled, text } = props;
+const MyButton = ({ disabled, text }) => (
+  <button disabled={disabled}>{text}</button>
+);
 
-  return <button disabled={disabled}>{text}</button>;
-}
+export default MyButton;

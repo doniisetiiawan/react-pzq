@@ -2,30 +2,24 @@ import React from 'react';
 import { render as renderJSX } from 'react-dom';
 
 import MyButton from './MyButton';
-import MyList from './MyList';
 
-const appState = {
-  text: 'My Button',
-  disabled: true,
-  items: ['First', 'Second', 'Third'],
-};
-
-function render(props) {
+function render({ first, second }) {
   renderJSX(
     <main>
-      <MyButton text={props.text} disabled={props.disabled} />
-
-      <MyList items={props.items} />
+      <MyButton text={first.text} disabled={first.disabled} />
+      <MyButton text={second.text} disabled={second.disabled} />
     </main>,
     document.getElementById('root'),
   );
 }
 
-render(appState);
-
-setTimeout(() => {
-  appState.disabled = false;
-  appState.items.push('Fourth');
-
-  render(appState);
-}, 1000);
+render({
+  first: {
+    text: 'First Button',
+    disabled: false,
+  },
+  second: {
+    text: 'Second Button',
+    disabled: true,
+  },
+});
