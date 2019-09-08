@@ -3,6 +3,7 @@ import cuid from 'cuid';
 import { fromJS } from 'immutable';
 
 import ArticleList from './ArticleList';
+import AddArticle from './AddArticle';
 
 export default class MyFeature extends Component {
   constructor(props) {
@@ -65,13 +66,17 @@ export default class MyFeature extends Component {
   };
 
   onClickRemove = (id) => {
-    const index = this.data.get('articles').findIndex((a) => a.get('id') === id);
+    const index = this.data
+      .get('articles')
+      .findIndex((a) => a.get('id') === id);
 
     this.data = this.data.update('articles', (a) => a.delete(index));
   };
 
   onClickToggle = (id) => {
-    const index = this.data.get('articles').findIndex((a) => a.get('id') === id);
+    const index = this.data
+      .get('articles')
+      .findIndex((a) => a.get('id') === id);
 
     this.data = this.data.update('articles', (articles) => articles.update(index, (a) => a.update('display', (display) => (display ? '' : 'none'))));
   };
@@ -86,24 +91,19 @@ export default class MyFeature extends Component {
   }
 
   render() {
-    const { articles, title, summary } = this.data.toJS();
+    const { data: data1 } = this.state;
+    const { articles, title, summary } = data1.toJS();
 
     return (
       <section>
-        <header>
-          <h1>Articles</h1>
-          <input
-            placeholder="Title"
-            value={title}
-            onChange={this.onChangeTitle}
-          />
-          <input
-            placeholder="Summary"
-            value={summary}
-            onChange={this.onChangeSummary}
-          />
-          <button onClick={this.onClickAdd}>Add</button>
-        </header>
+        <AddArticle
+          name="Articles"
+          title={title}
+          summary={summary}
+          onChangeTitle={this.onChangeTitle}
+          onChangeSummary={this.onChangeSummary}
+          onClickAdd={this.onClickAdd}
+        />
 
         <ArticleList
           articles={articles}
