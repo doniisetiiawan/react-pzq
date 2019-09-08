@@ -9,7 +9,18 @@ const LoadingMessage = ({ loading }) => Map(
   [[null, null]],
 ).get(loading, <em>{loading}</em>);
 
-const UserList = ({ error, loading, users }) => (
+const CancelLink = ({ loading, onClick }) => Map(
+  [[null, null]],
+).get(
+  loading,
+  <a href="#cancel" onClick={onClick}>
+      Cancel
+  </a>,
+);
+
+const UserList = ({
+  error, loading, users, onClickCancel,
+}) => (
   <section>
     <ErrorMessage error={error} />
 
@@ -20,6 +31,8 @@ const UserList = ({ error, loading, users }) => (
         <li key={i.id}>{i.name}</li>
       ))}
     </ul>
+
+    <CancelLink loading={loading} onClick={onClickCancel} />
   </section>
 );
 
