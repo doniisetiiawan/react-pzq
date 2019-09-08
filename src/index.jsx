@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import MyButton from './MyButton';
+import MyInput from './MyInput';
 
-render(<MyButton>Click Me</MyButton>, document.getElementById('root'));
+render(<MyInput />, document.getElementById('root'));
