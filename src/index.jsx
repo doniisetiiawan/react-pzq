@@ -1,26 +1,6 @@
 import React from 'react';
-import { render as renderJSX } from 'react-dom';
+import { render } from 'react-dom';
 
-import MyButton from './MyButton';
+import MyContainer from './MyContainer';
 
-function render({ first, second }) {
-  renderJSX(
-    <main>
-      <MyButton text={first.text} disabled={first.disabled} />
-      <MyButton text={second.text} disabled={second.disabled} />
-      <MyButton />
-    </main>,
-    document.getElementById('root'),
-  );
-}
-
-render({
-  first: {
-    text: 'First Button',
-    disabled: false,
-  },
-  second: {
-    text: 'Second Button',
-    disabled: true,
-  },
-});
+render(<MyContainer />, document.getElementById('root'));
