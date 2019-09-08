@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import cuid from 'cuid';
 import { fromJS } from 'immutable';
 
-import ArticleList from './ArticleList';
-import AddArticle from './AddArticle';
-
 export default class MyFeature extends Component {
   constructor(props) {
     super(props);
@@ -91,25 +88,26 @@ export default class MyFeature extends Component {
   }
 
   render() {
-    const { data: data1 } = this.state;
-    const { articles, title, summary } = data1.toJS();
+    const { articles, title, summary } = this.data.toJS();
+    const {
+      props: { addArticle, articleList },
+      onClickAdd,
+      onClickToggle,
+      onClickRemove,
+      onChangeTitle,
+      onChangeSummary,
+    } = this;
 
     return (
       <section>
-        <AddArticle
-          name="Articles"
-          title={title}
-          summary={summary}
-          onChangeTitle={this.onChangeTitle}
-          onChangeSummary={this.onChangeSummary}
-          onClickAdd={this.onClickAdd}
-        />
-
-        <ArticleList
-          articles={articles}
-          onClickToggle={this.onClickToggle}
-          onClickRemove={this.onClickRemove}
-        />
+        {addArticle({
+          title,
+          summary,
+          onChangeTitle,
+          onChangeSummary,
+          onClickAdd,
+        })}
+        {articleList({ articles, onClickToggle, onClickRemove })}
       </section>
     );
   }
