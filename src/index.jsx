@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import MyInput from './MyInput';
+import MyList from './MyList';
 
-render(<MyInput />, document.getElementById('root'));
+render(<MyList />, document.getElementById('root'));
