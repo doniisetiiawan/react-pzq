@@ -5,19 +5,28 @@ export default class MyComponent extends Component {
     super(props);
 
     this.state = {
-      heading: 'React Awesomesauce (Busy)',
-      content: 'Loading...',
+      first: 'loading...',
+      second: 'loading...',
+      third: 'loading...',
+      fourth: 'loading...',
+      doneMessage: 'finished!',
     };
   }
 
   render() {
-    const { heading, content } = this.state;
+    const { state } = this;
 
     return (
-      <main>
-        <h1>{heading}</h1>
-        <p>{content}</p>
-      </main>
+      <ul>
+        {Object.keys(state)
+          .filter((key) => key !== 'doneMessage')
+          .map((key) => (
+            <li key={key}>
+              <strong>{key}: </strong>
+              {state[key]}
+            </li>
+          ))}
+      </ul>
     );
   }
 }
