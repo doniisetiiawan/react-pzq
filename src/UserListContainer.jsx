@@ -4,14 +4,13 @@ import { fromJS } from 'immutable';
 import { users } from './api';
 import UserList from './UserList';
 
-export default class UserListContainer extends Component {
+class UserListContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       data: fromJS({
         error: null,
-        loading: 'loading...',
         users: [],
       }),
     };
@@ -21,7 +20,6 @@ export default class UserListContainer extends Component {
     users().then(
       (result) => {
         this.data = this.data
-          .set('loading', null)
           .set('error', null)
           .set('users', fromJS(result.users));
       },
@@ -40,7 +38,23 @@ export default class UserListContainer extends Component {
     this.setState({ data });
   }
 
+  static getDerivedStateFromProps(props, state) {
+    return {
+      ...state,
+      data: state.data.set(
+        'loading',
+        state.data.get('users').size === 0 ? props.loading : null,
+      ),
+    };
+  }
+
   render() {
     return <UserList {...this.data.toJS()} />;
   }
 }
+
+UserListContainer.defaultProps = {
+  loading: 'loading...',
+};
+
+export default UserListContainer;

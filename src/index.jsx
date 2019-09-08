@@ -3,4 +3,7 @@ import { render } from 'react-dom';
 
 import UserListContainer from './UserListContainer';
 
-render(<UserListContainer />, document.getElementById('root'));
+render(
+  <UserListContainer loading="playing the waiting game..." />,
+  document.getElementById('root'),
+);
