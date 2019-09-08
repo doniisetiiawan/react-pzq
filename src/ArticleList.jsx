@@ -1,19 +1,17 @@
 import React from 'react';
 import ArticleItem from './ArticleItem';
 
-export default function ArticleList(props) {
-  const { articles, onClickToggle, onClickRemove } = props;
+const ArticleList = ({ articles, onClickToggle, onClickRemove }) => (
+  <ul>
+    {articles.map((i) => (
+      <ArticleItem
+        key={i.id}
+        article={i}
+        onClickToggle={onClickToggle}
+        onClickRemove={onClickRemove}
+      />
+    ))}
+  </ul>
+);
 
-  return (
-    <ul>
-      {articles.map((i) => (
-        <ArticleItem
-          key={i.id}
-          article={i}
-          onClickToggle={onClickToggle}
-          onClickRemove={onClickRemove}
-        />
-      ))}
-    </ul>
-  );
-}
+export default ArticleList;
