@@ -1,21 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function First() {
-  return <p>First...</p>;
+export default class MyComponent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      first: false,
+      second: true,
+    };
+  }
+
+  render() {
+    const { first, second } = this.state;
+
+    return (
+      <main>
+        <section>
+          <button type="button" disabled={first}>
+            First
+          </button>
+        </section>
+        <section>
+          <button type="button" disabled={second}>
+            Second
+          </button>
+        </section>
+      </main>
+    );
+  }
 }
-
-function Second() {
-  return <p>Second...</p>;
-}
-
-function MyComponent(props) {
-  const { children } = props;
-  return <section>{children}</section>;
-}
-
-MyComponent.First = First;
-MyComponent.Second = Second;
-
-export default MyComponent;
-
-export { First, Second };
