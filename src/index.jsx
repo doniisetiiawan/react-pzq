@@ -1,12 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import MySection from './MySection';
-import MyButton from './MyButton';
+import MyComponent from './MyComponent';
 
 render(
-  <MySection>
-    <MyButton>My Button Text</MyButton>
-  </MySection>,
+  <MyComponent>
+    <MyComponent.First />
+    <MyComponent.Second />
+  </MyComponent>,
   document.getElementById('root'),
 );
