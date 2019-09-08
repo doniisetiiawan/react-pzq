@@ -3,23 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
+const MyComponent = () => (
   <section>
-    <header>
-      <h1>A Header</h1>
-    </header>
-    <nav>
-      <a href="item">Nav Item</a>
-    </nav>
-    <main>
-      <p>The main content...</p>
-    </main>
-    <footer>
-      <small>&copy; 2018</small>
-    </footer>
-  </section>,
-  document.getElementById('root'),
+    <h1>My Component</h1>
+    <p>Content in my component...</p>
+  </section>
 );
+
+ReactDOM.render(<MyComponent />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
