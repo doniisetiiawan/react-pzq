@@ -5,26 +5,18 @@ export default class MyComponent extends Component {
     super(props);
 
     this.state = {
-      first: false,
-      second: true,
+      heading: 'React Awesomesauce (Busy)',
+      content: 'Loading...',
     };
   }
 
   render() {
-    const { first, second } = this.state;
+    const { heading, content } = this.state;
 
     return (
       <main>
-        <section>
-          <button type="button" disabled={first}>
-            First
-          </button>
-        </section>
-        <section>
-          <button type="button" disabled={second}>
-            Second
-          </button>
-        </section>
+        <h1>{heading}</h1>
+        <p>{content}</p>
       </main>
     );
   }
