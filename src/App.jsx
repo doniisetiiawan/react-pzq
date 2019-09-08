@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import First from './First';
-import Second from './Second';
-import Third from './Third';
+export default class App extends Component {
+  constructor(props) {
+    super(props);
 
-const App = () => (
-  <>
-    <First />
-    <Second />
-    <Third />
-  </>
-);
+    this.state = {
+      first: 0,
+      second: 0,
+      third: 0,
+    };
+  }
 
-export default App;
+  onClick = (name) => () => {
+    this.setState((state) => ({
+      ...state,
+      [name]: state[name] + 1,
+    }));
+  };
+
+  render() {
+    const { first, second, third } = this.state;
+
+    return (
+      <>
+        <button onClick={this.onClick('first')}>First {first}</button>
+        <button onClick={this.onClick('second')}>Second {second}</button>
+        <button onClick={this.onClick('third')}>Third {third}</button>
+      </>
+    );
+  }
+}
