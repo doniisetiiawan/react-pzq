@@ -1,31 +1,33 @@
 import React from 'react';
+import BaseComponent from './BaseComponent';
 
-const MyComponent = ({ myArray, myNumber }) => (
-  <section>
-    <ul>
-      {myArray.map((i) => (
-        <li key={i}>{i}</li>
-      ))}
-    </ul>
-    <p>{myNumber}</p>
-  </section>
-);
+export default class MyComponent extends BaseComponent {
+  componentDidMount() {
+    this.data = this.data.merge({
+      placeholder: 'Enter a name...',
+      enabled: true,
+    });
+  }
 
-MyComponent.propTypes = {
-  myArray: (
-    props, name, component,
-  ) => (Array.isArray(props[name]) && props[name].length
-    ? null
-    : new Error(`${component}.${name}: expecting non-empty array`)),
+  onChange = ({ target: { value } }) => {
+    this.data = this.data.set('name', value);
+  };
 
-  myNumber: (
-    props, name, component,
-  ) => (Number.isFinite(props[name])
-  && props[name] > 0 && props[name] < 100
-    ? null
-    : new Error(
-      `${component}.${name}: expecting number between 1 and 99`,
-    )),
-};
+  render() {
+    const { enabled, name, placeholder } = this.data.toJS();
 
-export default MyComponent;
+    return (
+      <label htmlFor="my-input">
+        Name:
+        <input
+          type="text"
+          id="my-input"
+          disabled={!enabled}
+          placeholder={placeholder}
+          value={name}
+          onChange={this.onChange}
+        />
+      </label>
+    );
+  }
+}

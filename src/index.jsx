@@ -5,9 +5,7 @@ import MyComponent from './MyComponent';
 
 render(
   <section>
-    <MyComponent myArray={['first', 'second', 'third']} myNumber={99} />
-
-    <MyComponent myArray={[]} myNumber={100} />
+    <MyComponent />
   </section>,
   document.getElementById('root'),
 );
