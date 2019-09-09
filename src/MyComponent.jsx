@@ -12,30 +12,26 @@ const MyComponent = ({
   <section>
     <p>{myString}</p>
     <p>{myNumber}</p>
-
     <p>
       <input type="checkbox" defaultChecked={myBool} />
     </p>
-
     <p>{myFunc()}</p>
-
     <ul>
       {myArray.map((i) => (
         <li key={i}>{i}</li>
       ))}
     </ul>
-
     <p>{myObject.myProp}</p>
   </section>
 );
 
 MyComponent.propTypes = {
-  myString: PropTypes.string,
-  myNumber: PropTypes.number,
-  myBool: PropTypes.bool,
-  myFunc: PropTypes.func,
-  myArray: PropTypes.array,
-  myObject: PropTypes.object,
+  myString: PropTypes.string.isRequired,
+  myNumber: PropTypes.number.isRequired,
+  myBool: PropTypes.bool.isRequired,
+  myFunc: PropTypes.func.isRequired,
+  myArray: PropTypes.array.isRequired,
+  myObject: PropTypes.object.isRequired,
 };
 
 export default MyComponent;

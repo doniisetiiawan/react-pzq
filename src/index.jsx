@@ -12,13 +12,12 @@ const validProps = {
   myObject: { myProp: 'My Prop' },
 };
 
-const invalidProps = {
-  myString: 100,
-  myNumber: 'My String',
-  myBool: () => 'My Reaturn Value',
-  myFunc: true,
-  myArray: { myProp: 'My Prop' },
-  myObject: ['One', 'Two', 'Three'],
+const missingProp = {
+  myString: 'My String',
+  myNumber: 100,
+  myBool: true,
+  myFunc: () => 'My Return Value',
+  myArray: ['One', 'Two', 'Three'],
 };
 
 function render(props) {
@@ -26,4 +25,4 @@ function render(props) {
 }
 
 render(validProps);
-render(invalidProps);
+render(missingProp);
