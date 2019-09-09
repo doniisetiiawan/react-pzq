@@ -1,32 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
+import One from './one';
+import Two from './two';
 
-    this.state = {
-      first: 0,
-      second: 0,
-      third: 0,
-    };
-  }
+const App = () => (
+  <Router>
+    <>
+      <Route exact path="/" render={() => <Redirect to="one" />} />
+      <One />
+      <Two />
+    </>
+  </Router>
+);
 
-  onClick = (name) => () => {
-    this.setState((state) => ({
-      ...state,
-      [name]: state[name] + 1,
-    }));
-  };
-
-  render() {
-    const { first, second, third } = this.state;
-
-    return (
-      <>
-        <button onClick={this.onClick('first')}>First {first}</button>
-        <button onClick={this.onClick('second')}>Second {second}</button>
-        <button onClick={this.onClick('third')}>Third {third}</button>
-      </>
-    );
-  }
-}
+export default App;
