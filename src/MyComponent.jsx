@@ -1,37 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MyComponent = ({
-  myString,
-  myNumber,
-  myBool,
-  myFunc,
-  myArray,
-  myObject,
-}) => (
+const MyComponent = ({ label, value, max }) => (
   <section>
-    <p>{myString}</p>
-    <p>{myNumber}</p>
-    <p>
-      <input type="checkbox" defaultChecked={myBool} />
-    </p>
-    <p>{myFunc()}</p>
-    <ul>
-      {myArray.map((i) => (
-        <li key={i}>{i}</li>
-      ))}
-    </ul>
-    <p>{myObject.myProp}</p>
+    <h5>{label}</h5>
+    <progress {...{ max, value }} />
   </section>
 );
 
 MyComponent.propTypes = {
-  myString: PropTypes.string.isRequired,
-  myNumber: PropTypes.number.isRequired,
-  myBool: PropTypes.bool.isRequired,
-  myFunc: PropTypes.func.isRequired,
-  myArray: PropTypes.array.isRequired,
-  myObject: PropTypes.object.isRequired,
+  label: PropTypes.any,
+  value: PropTypes.any,
+  max: PropTypes.any,
 };
 
 export default MyComponent;

@@ -1,28 +1,19 @@
 import React from 'react';
-import { render as renderJSX } from 'react-dom';
+import { render } from 'react-dom';
 
 import MyComponent from './MyComponent';
 
-const validProps = {
-  myString: 'My String',
-  myNumber: 100,
-  myBool: true,
-  myFunc: () => 'My Return Value',
-  myArray: ['One', 'Two', 'Three'],
-  myObject: { myProp: 'My Prop' },
-};
+render(
+  <section>
+    <MyComponent label="Regular Values" max={20} value={10} />
 
-const missingProp = {
-  myString: 'My String',
-  myNumber: 100,
-  myBool: true,
-  myFunc: () => 'My Return Value',
-  myArray: ['One', 'Two', 'Three'],
-};
+    <MyComponent label="String Values" max="20" value="10" />
 
-function render(props) {
-  renderJSX(<MyComponent {...props} />, document.getElementById('root'));
-}
-
-render(validProps);
-render(missingProp);
+    <MyComponent
+      label={Number.MAX_SAFE_INTEGER}
+      max={new Date()}
+      value="10"
+    />
+  </section>,
+  document.getElementById('root'),
+);
