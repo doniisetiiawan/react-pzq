@@ -1,30 +1,13 @@
-import React, { Component } from 'react';
+import cuid from 'cuid';
 
-export default class MyUser extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      modified: new Date(),
-      first: 'First',
-      last: 'Last',
-    };
+export default class MyUser {
+  constructor(first, last) {
+    this.id = cuid();
+    this.first = first;
+    this.last = last;
   }
 
-  shouldComponentUpdate(props, state) {
-    const { modified } = this.state;
-    return Number(state).modified > Number(modified);
-  }
-
-  render() {
-    const { modified, first, last } = this.state;
-
-    return (
-      <section>
-        <p>{modified.toLocaleString()}</p>
-        <p>{first}</p>
-        <p>{last}</p>
-      </section>
-    );
+  get name() {
+    return `${this.first} ${this.last}`;
   }
 }
