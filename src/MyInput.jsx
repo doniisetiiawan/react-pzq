@@ -1,15 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { getState, setState } from './store';
 
-export default class MyInput extends Component {
-  onChange = () => {
-    console.log('changed');
-  };
-
-  onBlur = () => {
-    console.log('blured');
-  };
-
-  render() {
-    return <input onChange={this.onChange} onBlur={this.onBlur} />;
-  }
+function onChange(e) {
+  setState(getState().set('filterValue', e.target.value));
 }
+
+const MyInput = ({ value, placeholder }) => (
+  <input
+    value={value}
+    placeholder={placeholder}
+    onChange={onChange}
+  />
+);
+
+MyInput.propTypes = {
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+};
+
+export default MyInput;

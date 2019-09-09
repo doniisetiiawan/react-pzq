@@ -1,18 +1,25 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import cond from './cond';
-import MyComponent from './MyComponent';
+import { connect, getState, setState } from './store';
+import MyInput from './MyInput';
+import MyList from './MyList';
 
-const ComposedVisible = cond(MyComponent, () => true);
-const ComposedHidden = cond(MyComponent, () => false);
+const ConnectedInput = connect(MyInput);
+const ConnectedList = connect(MyList);
+
+setState(
+  getState().merge({
+    filterValue: '',
+    placeholder: 'Search...',
+    items: ['First', 'Second', 'Third', 'Fourth'],
+  }),
+);
 
 render(
   <section>
-    <h1>Visible</h1>
-    <ComposedVisible />
-    <h2>Hidden</h2>
-    <ComposedHidden />
+    <ConnectedInput />
+    <ConnectedList />
   </section>,
   document.getElementById('root'),
 );

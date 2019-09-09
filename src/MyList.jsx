@@ -1,39 +1,23 @@
-import React, { Component } from 'react';
-import { fromJS } from 'immutable';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class MyList extends Component {
-  constructor(props) {
-    super(props);
+const MyList = ({ filterValue, items }) => {
+  const filter = new RegExp(filterValue, 'i');
 
-    this.state = {
-      data: fromJS({
-        items: [...Array(5000).keys()],
-      }),
-    };
-  }
-
-  shouldComponentUpdate(props, state) {
-    return this.data !== state.data;
-  }
-
-  get data() {
-    const { data: data1 } = this.state;
-    return data1;
-  }
-
-  set data(data) {
-    this.setState({ data });
-  }
-
-  render() {
-    const items = this.data.get('items');
-
-    return (
-      <ul>
-        {items.map((i) => (
-          <li key={i}>{i}</li>
+  return (
+    <ul>
+      {items
+        .filter((item) => filter.test(item))
+        .map((item) => (
+          <li key={item}>{item}</li>
         ))}
-      </ul>
-    );
-  }
-}
+    </ul>
+  );
+};
+
+MyList.propTypes = {
+  filterValue: PropTypes.string,
+  items: PropTypes.array.isRequired,
+};
+
+export default MyList;
