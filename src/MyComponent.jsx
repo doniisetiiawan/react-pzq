@@ -1,25 +1,31 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const levels = new Array(10)
-  .fill(null).map((v, i) => i + 1);
-
-const userShape = {
-  name: PropTypes.string,
-  age: PropTypes.number,
-};
-
-const MyComponent = ({ level, user }) => (
+const MyComponent = ({ myArray, myNumber }) => (
   <section>
-    <p>{level}</p>
-    <p>{user.name}</p>
-    <p>{user.age}</p>
+    <ul>
+      {myArray.map((i) => (
+        <li key={i}>{i}</li>
+      ))}
+    </ul>
+    <p>{myNumber}</p>
   </section>
 );
 
 MyComponent.propTypes = {
-  level: PropTypes.oneOf(levels),
-  user: PropTypes.shape(userShape),
+  myArray: (
+    props, name, component,
+  ) => (Array.isArray(props[name]) && props[name].length
+    ? null
+    : new Error(`${component}.${name}: expecting non-empty array`)),
+
+  myNumber: (
+    props, name, component,
+  ) => (Number.isFinite(props[name])
+  && props[name] > 0 && props[name] < 100
+    ? null
+    : new Error(
+      `${component}.${name}: expecting number between 1 and 99`,
+    )),
 };
 
 export default MyComponent;
