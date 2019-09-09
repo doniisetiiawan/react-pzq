@@ -1,32 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class MyComponent extends Component {
-  constructor(props) {
-    super(props);
+const MyComponent = ({
+  myString,
+  myNumber,
+  myBool,
+  myFunc,
+  myArray,
+  myObject,
+}) => (
+  <section>
+    <p>{myString}</p>
+    <p>{myNumber}</p>
 
-    this.state = {
-      first: 'loading...',
-      second: 'loading...',
-      third: 'loading...',
-      fourth: 'loading...',
-      doneMessage: 'finished!',
-    };
-  }
+    <p>
+      <input type="checkbox" defaultChecked={myBool} />
+    </p>
 
-  render() {
-    const { state } = this;
+    <p>{myFunc()}</p>
 
-    return (
-      <ul>
-        {Object.keys(state)
-          .filter((key) => key !== 'doneMessage')
-          .map((key) => (
-            <li key={key}>
-              <strong>{key}: </strong>
-              {state[key]}
-            </li>
-          ))}
-      </ul>
-    );
-  }
-}
+    <ul>
+      {myArray.map((i) => (
+        <li key={i}>{i}</li>
+      ))}
+    </ul>
+
+    <p>{myObject.myProp}</p>
+  </section>
+);
+
+MyComponent.propTypes = {
+  myString: PropTypes.string,
+  myNumber: PropTypes.number,
+  myBool: PropTypes.bool,
+  myFunc: PropTypes.func,
+  myArray: PropTypes.array,
+  myObject: PropTypes.object,
+};
+
+export default MyComponent;
