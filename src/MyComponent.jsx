@@ -1,5 +1,5 @@
 import React from 'react';
 
-const MyComponent = () => <p>My component...</p>;
+const MyComponent = () => <p>Hello Route!</p>;
 
 export default MyComponent;
