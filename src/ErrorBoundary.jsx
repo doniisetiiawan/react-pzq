@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 export default class ErrorBoundary extends Component {
   constructor(props) {
@@ -19,6 +19,7 @@ export default class ErrorBoundary extends Component {
       const { children } = this.props;
       return children;
     }
-    return <strong>{error.toString()}</strong>;
+    console.error(error);
+    return null;
   }
 }

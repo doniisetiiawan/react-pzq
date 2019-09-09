@@ -1,33 +1,32 @@
 import React from 'react';
+import { Map } from 'immutable';
+
 import BaseComponent from './BaseComponent';
 
+const SectionHeader = ({ text, length }) => Map(
+  [[0, null]],
+).get(length, <h1>{text}</h1>);
+
 export default class MyComponent extends BaseComponent {
-  componentDidMount() {
-    this.data = this.data.merge({
-      placeholder: 'Enter a name...',
-      enabled: true,
-    });
-  }
-
-  onChange = ({ target: { value } }) => {
-    this.data = this.data.set('name', value);
-  };
-
   render() {
-    const { enabled, name, placeholder } = this.data.toJS();
+    const { users, groups } = this.props;
 
     return (
-      <label htmlFor="my-input">
-        Name:
-        <input
-          type="text"
-          id="my-input"
-          disabled={!enabled}
-          placeholder={placeholder}
-          value={name}
-          onChange={this.onChange}
-        />
-      </label>
+      <section>
+        <SectionHeader text="Users" length={users.length} />
+        <ul>
+          {users.map((i) => (
+            <li key={i}>{i}</li>
+          ))}
+        </ul>
+
+        <SectionHeader text="Groups" length={groups.length} />
+        <ul>
+          {groups.map((i) => (
+            <li key={i}>{i}</li>
+          ))}
+        </ul>
+      </section>
     );
   }
 }

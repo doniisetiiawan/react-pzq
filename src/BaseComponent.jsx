@@ -1,29 +1,20 @@
 import { Component } from 'react';
-import { fromJS } from 'immutable';
+import PropTypes from 'prop-types';
 
-export default class BaseComponent extends Component {
-  constructor(props) {
-    super(props);
+class BaseComponent extends Component {
+  static propTypes = {
+    users: PropTypes.array.isRequired,
+    groups: PropTypes.array.isRequired,
+  };
 
-    this.state = {
-      data: fromJS({
-        name: 'Mark',
-        enabled: false,
-        placeholder: '',
-      }),
-    };
-  }
-
-  get data() {
-    const { data: data1 } = this.state;
-    return data1;
-  }
-
-  set data(data) {
-    this.setState({ data });
-  }
+  static defaultProps = {
+    users: [],
+    groups: [],
+  };
 
   render() {
     return null;
   }
 }
+
+export default BaseComponent;
