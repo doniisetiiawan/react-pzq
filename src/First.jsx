@@ -1,12 +1,5 @@
 import React from 'react';
-import { PermissionConsumer } from './PermissionContext';
 
-const First = () => (
-  <PermissionConsumer name="first">
-    <div>
-      <button>First</button>
-    </div>
-  </PermissionConsumer>
-);
+const First = () => <h1>First</h1>;
 
 export default First;

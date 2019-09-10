@@ -1,15 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import UsersContainer from './UsersContainer';
-import UserContainer from './UserContainer';
+import First from './First';
+import Second from './Second';
 
 const App = () => (
   <Router>
-    <>
-      <Route exact path="/" component={UsersContainer} />
-      <Route path="/users/:id" component={UserContainer} />
-    </>
+    <section>
+      <nav>
+        <p>
+          <Link to="first">First</Link>
+        </p>
+        <p>
+          <Link to="second">Second</Link>
+        </p>
+      </nav>
+      <section>
+        <Route path="/first" component={First} />
+        <Route path="/second" component={Second} />
+      </section>
+    </section>
   </Router>
 );
 
