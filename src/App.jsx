@@ -1,26 +1,30 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-import First from './First';
-import Second from './Second';
+const App = ({ children }) => <section>{children}</section>;
 
-const App = () => (
-  <Router>
+App.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+const param = 'From Param';
+const query = new URLSearchParams({ msg: 'From Query' });
+
+App.defaultProps = {
+  children: (
     <section>
-      <nav>
-        <p>
-          <Link to="first">First</Link>
-        </p>
-        <p>
-          <Link to="second">Second</Link>
-        </p>
-      </nav>
-      <section>
-        <Route path="/first" component={First} />
-        <Route path="/second" component={Second} />
-      </section>
+      <p>
+        <Link to={`echo/${param}`}>Echo param</Link>
+      </p>
+
+      <p>
+        <Link to={`echo?${query.toString()}`} query={query}>
+          Echo query
+        </Link>
+      </p>
     </section>
-  </Router>
-);
+  ),
+};
 
 export default App;
