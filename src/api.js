@@ -1,18 +1,19 @@
-/* eslint-disable import/prefer-default-export */
-export function users(fail) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (fail) {
-        reject(new Error('epic fail'));
-      } else {
-        resolve({
-          users: [
-            { id: 0, name: 'First' },
-            { id: 1, name: 'Second' },
-            { id: 2, name: 'Third' },
-          ],
-        });
-      }
-    }, 2000);
+const users = [
+  { first: 'First 1', last: 'Last 1', age: 1 },
+  { first: 'First 2', last: 'Last 2', age: 2 },
+];
+
+export function fetchUsers() {
+  return new Promise((resolve) => {
+    resolve(users);
   });
+}
+
+export function fetchUser(id) {
+  const user = users[id];
+
+  if (user === undefined) {
+    return Promise.reject(`User ${id} not found`);
+  }
+  return Promise.resolve(user);
 }
