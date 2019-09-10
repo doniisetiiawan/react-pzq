@@ -1,16 +1,37 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Route, Link } from 'react-router-dom';
 
-const App = ({ items }) => (
-  <ul>
-    {items.map((i) => (
-      <li key={i}>{i}</li>
-    ))}
-  </ul>
+import FirstHeader from './first/FirstHeader';
+import FirstContent from './first/FirstContent';
+import SecondHeader from './second/SecondHeader';
+import SecondContent from './second/SecondContent';
+
+const App = () => (
+  <section>
+    <header>
+      <Route exact path="/" render={() => <h1>App</h1>} />
+      <Route exact path="/first" component={FirstHeader} />
+      <Route exact path="/second" component={SecondHeader} />
+    </header>
+    <main>
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <ul>
+            <li>
+              <Link to="first">First</Link>
+            </li>
+            <li>
+              <Link to="second">Second</Link>
+            </li>
+          </ul>
+        )}
+      />
+      <Route exact path="/first" component={FirstContent} />
+      <Route exact path="/second" component={SecondContent} />
+    </main>
+  </section>
 );
-
-App.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 export default App;
