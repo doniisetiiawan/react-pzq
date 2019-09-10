@@ -1,19 +1,8 @@
-const users = [
-  { first: 'First 1', last: 'Last 1', age: 1 },
-  { first: 'First 2', last: 'Last 2', age: 2 },
-];
+/* eslint-disable import/prefer-default-export */
+const users = ['User 1', 'User 2', 'User 3'];
 
-export function fetchUsers() {
+export function fetchUsers(desc) {
   return new Promise((resolve) => {
-    resolve(users);
+    resolve(desc ? users.slice(0).reverse() : users);
   });
-}
-
-export function fetchUser(id) {
-  const user = users[id];
-
-  if (user === undefined) {
-    return Promise.reject(`User ${id} not found`);
-  }
-  return Promise.resolve(user);
 }

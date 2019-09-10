@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { fromJS } from 'immutable';
 
 import Users from './Users';
@@ -16,7 +17,14 @@ export default class UsersContainer extends Component {
   }
 
   componentDidMount() {
-    fetchUsers().then((users) => {
+    const {
+      match: { params },
+      location: { search },
+    } = this.props;
+
+    const desc = params.desc === 'desc' || !!new URLSearchParams(search).get('desc');
+
+    fetchUsers(desc).then((users) => {
       this.data = this.data.set('users', users);
     });
   }
@@ -34,3 +42,8 @@ export default class UsersContainer extends Component {
     return <Users {...this.data.toJS()} />;
   }
 }
+
+UsersContainer.propTypes = {
+  params: PropTypes.object,
+  location: PropTypes.object.isRequired,
+};

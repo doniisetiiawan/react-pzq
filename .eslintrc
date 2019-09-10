@@ -18,6 +18,7 @@
     "react/jsx-props-no-spreading": "warn",
     "react/no-unescaped-entities": "off",
     "prefer-promise-reject-errors": "off",
+    "react/prop-types": "off",
     "react/button-has-type": "off"
   }
 }
