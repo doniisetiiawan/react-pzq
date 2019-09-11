@@ -5,9 +5,10 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Home from './Home';
-import Lists from './lists/Lists';
 import './App.css';
+import Home from './Home';
+import Forms from './forms/Forms';
+import Lists from './lists/Lists';
 
 const App = () => (
   <Router>
@@ -58,10 +59,9 @@ const App = () => (
             </Nav.Item>
           </Nav>
         </Col>
-        <Col
-          className="content"
-        >
+        <Col className="content">
           <Route exact path="/" component={Home} />
+          <Route exact path="/forms" component={Forms} />
           <Route exact path="/lists" component={Lists} />
         </Col>
       </Row>

@@ -11,9 +11,6 @@
   .sidebar {
     display: block;
     position: fixed;
-    top: 60px;
   }
 }
-.content {
-  top: 60px;
-}
+
