@@ -3,8 +3,9 @@ import {
   Navbar, Nav, Container, Row, Col,
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import Home from './Home';
 import './App.css';
 
 const App = () => (
@@ -55,6 +56,9 @@ const App = () => (
               </LinkContainer>
             </Nav.Item>
           </Nav>
+        </Col>
+        <Col sm={9} smOffset={3} md={10} mdOffset={2} className="content">
+          <Route exact path="/" component={Home} />
         </Col>
       </Row>
     </Container>
