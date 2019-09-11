@@ -15,10 +15,11 @@
     "no-undef": "warn",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
-    "react/jsx-props-no-spreading": "warn",
+    "react/jsx-props-no-spreading": "off",
     "react/no-unescaped-entities": "off",
     "prefer-promise-reject-errors": "off",
     "react/prop-types": "off",
+    "react/forbid-prop-types": "off",
     "react/button-has-type": "off"
   }
 }

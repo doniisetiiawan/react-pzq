@@ -6,6 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Home from './Home';
+import Lists from './lists/Lists';
 import './App.css';
 
 const App = () => (
@@ -57,8 +58,11 @@ const App = () => (
             </Nav.Item>
           </Nav>
         </Col>
-        <Col sm={9} smOffset={3} md={10} mdOffset={2} className="content">
+        <Col
+          className="content"
+        >
           <Route exact path="/" component={Home} />
+          <Route exact path="/lists" component={Lists} />
         </Col>
       </Row>
     </Container>
