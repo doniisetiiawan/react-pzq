@@ -1,32 +1,64 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {
+  Navbar, Nav, Container, Row, Col,
+} from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
+import './App.css';
 
-    this.state = {
-      clicks: 0,
-    };
-  }
+const App = () => (
+  <Router>
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="/">Mobile-First React</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse
+        id="basic-navbar-nav"
+        className="justify-content-end"
+      >
+        <Nav>
+          <Nav.Item>
+            <LinkContainer to="/">
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
+          </Nav.Item>
+          <Nav.Item>
+            <LinkContainer to="forms">
+              <Nav.Link>Forms</Nav.Link>
+            </LinkContainer>
+          </Nav.Item>
+          <Nav.Item>
+            <LinkContainer to="lists">
+              <Nav.Link>Lists</Nav.Link>
+            </LinkContainer>
+          </Nav.Item>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+    <Container>
+      <Row>
+        <Col sm={3} md={2} className="sidebar">
+          <Nav className="flex-column">
+            <Nav.Item>
+              <LinkContainer to="/">
+                <Nav.Link>Home</Nav.Link>
+              </LinkContainer>
+            </Nav.Item>
+            <Nav.Item>
+              <LinkContainer to="forms">
+                <Nav.Link>Forms</Nav.Link>
+              </LinkContainer>
+            </Nav.Item>
+            <Nav.Item>
+              <LinkContainer to="lists">
+                <Nav.Link>Lists</Nav.Link>
+              </LinkContainer>
+            </Nav.Item>
+          </Nav>
+        </Col>
+      </Row>
+    </Container>
+  </Router>
+);
 
-  render() {
-    const { clicks } = this.state;
-    return (
-      <section>
-        <header>
-          <h1>Hydrating The Client</h1>
-        </header>
-        <main>
-          <p>Clicks {clicks}</p>
-          <button
-            onClick={() => this.setState(
-              (state) => ({ clicks: state.clicks + 1 }),
-            )}
-          >
-            Click Me
-          </button>
-        </main>
-      </section>
-    );
-  }
-}
+export default App;
