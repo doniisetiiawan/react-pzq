@@ -1,37 +1,32 @@
-import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import React, { Component } from 'react';
 
-import FirstHeader from './first/FirstHeader';
-import FirstContent from './first/FirstContent';
-import SecondHeader from './second/SecondHeader';
-import SecondContent from './second/SecondContent';
+export default class App extends Component {
+  constructor(props) {
+    super(props);
 
-const App = () => (
-  <section>
-    <header>
-      <Route exact path="/" render={() => <h1>App</h1>} />
-      <Route exact path="/first" component={FirstHeader} />
-      <Route exact path="/second" component={SecondHeader} />
-    </header>
-    <main>
-      <Route
-        exact
-        path="/"
-        render={() => (
-          <ul>
-            <li>
-              <Link to="first">First</Link>
-            </li>
-            <li>
-              <Link to="second">Second</Link>
-            </li>
-          </ul>
-        )}
-      />
-      <Route exact path="/first" component={FirstContent} />
-      <Route exact path="/second" component={SecondContent} />
-    </main>
-  </section>
-);
+    this.state = {
+      clicks: 0,
+    };
+  }
 
-export default App;
+  render() {
+    const { clicks } = this.state;
+    return (
+      <section>
+        <header>
+          <h1>Hydrating The Client</h1>
+        </header>
+        <main>
+          <p>Clicks {clicks}</p>
+          <button
+            onClick={() => this.setState(
+              (state) => ({ clicks: state.clicks + 1 }),
+            )}
+          >
+            Click Me
+          </button>
+        </main>
+      </section>
+    );
+  }
+}
