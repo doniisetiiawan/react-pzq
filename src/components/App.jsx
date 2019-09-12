@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Home from './Home';
+import Article from './Article';
 
 // eslint-disable-next-line react/display-name
 const articleList = (filter) => (props) => <Home {...props} filter={filter} />;
@@ -47,6 +48,7 @@ export default connect((state) => state.get('App').toJS())(
           <Route exact path="/global" component={Global} />
           <Route exact path="/tech" component={Tech} />
           <Route exact path="/sports" component={Sports} />
+          <Route exact path="/articles/:id" component={Article} />
         </section>
       </main>
     </Router>
